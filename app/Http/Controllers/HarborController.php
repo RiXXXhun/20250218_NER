@@ -7,36 +7,31 @@ use Illuminate\Http\Request;
 
 class HarborController extends Controller
 {
-    public function getAll() 
-    {
+    public function getHarbor(){
         $harbors = Harbor::query()
-        ->with("ships")
+        ->with('ships')
         ->get();
 
         return response()->json($harbors);
     }
-
-    public function create(Request $request)
-    {
-        $data = $request->all();
+    public function createHarbor(Request $req){
+        $data = $req->all();
         $harbor = Harbor::create($data);
-
         return response()->json($harbor, 201);
     }
-
-    public function update(Harbor $harbor, Request $request)
-    {
-        $data = $request->all();
-
+    public function updateHarbor(Harbor $harbor, Request $req){
+        $data = $req->all();
         $harbor->update($data);
-
         return response()->json($harbor);
     }
-
-    public function delete(Harbor $harbor)
-    {
+    public function deleteHarbor(Harbor $harbor){
         $harbor->delete();
+        return response()->json(null, 204);
+    }
+    public function openHarbor(Harbor $harbor) {
+        $harbor->open = !$harbor->open;
+        $harbor->save();
 
-        return response()->json("", 204); 
+        return response()->json($harbor);
     }
 }

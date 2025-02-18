@@ -25,10 +25,12 @@ Route::group([
     "prefix" => "harbors",
     "controller" => HarborController::class
 ], function () {
-    Route::get("/", "getAll");
-    Route::post("/", "create");
-    Route::put("/{harbor}", "update");
-    Route::delete("/{harbor}", "delete");
+    Route::get("/", "getHarbor");
+    Route::post("/", "createHarbor");
+    Route::put("/{harbor}", "updateHarbor");
+    Route::delete("/{harbor}", "deleteHarbor");
+
+    Route::post("/open/{harbor}", "openHarbor");
 });
 
 Route::group([
