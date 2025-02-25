@@ -9,7 +9,7 @@ class HarborController extends Controller
 {
     public function getHarbor(){
         $harbors = Harbor::query()
-        ->with('ships')
+        ->with('ships.owners')
         ->get();
 
         return response()->json($harbors);
