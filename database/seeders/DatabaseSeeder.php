@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(HarborsSeeder::class);
         $this->call(ShipsSeeder::class);
+        $this->call(OwnersSeeder::class);
     }
 }
